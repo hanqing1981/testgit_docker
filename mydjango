@@ -1,0 +1,10 @@
+FROM centos
+RUN yum install -y python36 python3-pip python36-devel
+RUN pip3 install django==1.11 pymysql
+COPY /mysite-master /data
+WORKDIR /data
+RUN python3 manage.py migrate
+EXPOSE 8088
+CMD python3 manage.py runserver 0.0.0.0:8088
+
+
